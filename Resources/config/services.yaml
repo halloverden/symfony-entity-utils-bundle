@@ -1,12 +1,12 @@
 services:
   HalloVerden\EntityUtilsBundle\EventListener\EntityValidatorListener:
-    tags: [{name: doctrine.orm.entity_listener}]
+    tags: [{name: doctrine.event_subscriber}]
     arguments:
       $validator: '@Symfony\Component\Validator\Validator\ValidatorInterface'
       $serializer: '@JMS\Serializer\SerializerInterface'
 
   HalloVerden\EntityUtilsBundle\EventListener\NonPrimaryKeyUuidPropertyListener:
-    tags: [{name: doctrine.orm.entity_listener}]
+    tags: [{name: doctrine.event_subscriber}]
 
   HalloVerden\EntityUtilsBundle\EventListener\TimestampableEntityListener:
-    tags: [{name: doctrine.orm.entity_listener}]
+    tags: [{name: doctrine.event_subscriber}]
