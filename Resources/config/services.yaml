@@ -10,3 +10,6 @@ services:
 
   HalloVerden\EntityUtilsBundle\EventListener\TimestampableEntityListener:
     tags: [{name: doctrine.event_subscriber}]
+
+  HalloVerden\EntityUtilsBundle\JMSHandlers\UnixTimeHandler:
+    tags: [{name: jms_serializer.subscribing_handler}]
