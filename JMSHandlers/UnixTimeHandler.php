@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\JMSHandlers;
+namespace HalloVerden\EntityUtilsBundle\JMSHandlers;
 
 
 use JMS\Serializer\Context;
