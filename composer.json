@@ -7,20 +7,24 @@
         {
             "name": "Tom Roar Furunes",
             "email": "tom.roar@halloverden.no"
+        },
+        {
+            "name": "Erich Json Fosse",
+            "email": "erich@halloverden.no"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php":"^7.2",
-        "symfony/http-kernel": "^4.4.7|^5.0.7",
-        "symfony/dependency-injection": "^4.4.7|^5.0.7",
+        "symfony/http-kernel": "^v4.4.13|^v5.1.5",
+        "symfony/dependency-injection": "^v4.4.13|^v5.1.5",
         "ramsey/uuid": "^3.9",
         "jms/serializer": "^3.4",
         "doctrine/orm": "^2.7",
-        "symfony/validator": "^4.4.7|^5.0.7",
-        "symfony/config": "^4.4.7|^5.0.7",
-        "halloverden/symfony-http-exceptions": "^1.0",
+        "symfony/validator": "^v4.4.13|^v5.1.5",
+        "symfony/config": "^v4.4.13|^v5.1.5",
+        "halloverden/symfony-http-exceptions": "^1.0.1",
         "jms/serializer-bundle": "^3.5"
     },
     "autoload": {
