@@ -5,8 +5,7 @@ namespace HalloVerden\EntityUtilsBundle\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -16,12 +15,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 trait TNonPrimaryKeyUuid {
   /**
-   * @var UuidInterface
+   * @var Uuid
    *
-   * @ORM\Column(name="uuid", type="uuid_binary", unique=true)
+   * @ORM\Column(name="uuid", type="uuid", unique=true)
    *
    * @Assert\NotBlank()
-   * @Assert\Type(type="Ramsey\Uuid\UuidInterface")
+   * @Assert\Type(type="Symfony\Component\Uid\Uuid")
    *
    * @Serializer\SerializedName("uuid")
    * @Serializer\Type(name="string")
@@ -31,9 +30,9 @@ trait TNonPrimaryKeyUuid {
   private $uuid;
 
   /**
-   * @return null|UuidInterface
+   * @return Uuid
    */
-  public function getUuid(): ?UuidInterface {
+  public function getUuid(): ?Uuid {
     return $this->uuid;
   }
 
@@ -43,7 +42,7 @@ trait TNonPrimaryKeyUuid {
    * @throws \Exception
    */
   public function generateUuid(): void {
-    $this->uuid = Uuid::uuid4();
+    $this->uuid = Uuid::v4();
   }
 
   /**

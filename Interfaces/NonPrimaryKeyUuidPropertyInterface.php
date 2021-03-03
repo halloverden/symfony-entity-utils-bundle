@@ -4,9 +4,9 @@
 namespace HalloVerden\EntityUtilsBundle\Interfaces;
 
 
-use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Uid\Uuid;
 
 interface NonPrimaryKeyUuidPropertyInterface {
   function generateUuid(): void;
-  function getUuid(): ?UuidInterface;
+  function getUuid(): ?Uuid;
 }
