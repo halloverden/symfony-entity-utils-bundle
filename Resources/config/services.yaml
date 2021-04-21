@@ -12,3 +12,6 @@ services:
 
   HalloVerden\EntityUtilsBundle\JMSHandlers\UnixTimeHandler:
     tags: [{name: jms_serializer.subscribing_handler}]
+
+  HalloVerden\EntityUtilsBundle\JMSHandlers\UuidHandler:
+    tags: [ { name: jms_serializer.subscribing_handler } ]
