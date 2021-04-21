@@ -3,7 +3,6 @@ services:
     tags: [{name: doctrine.event_subscriber}]
     arguments:
       $validator: '@Symfony\Component\Validator\Validator\ValidatorInterface'
-      $serializer: '@JMS\Serializer\SerializerInterface'
 
   HalloVerden\EntityUtilsBundle\EventListener\NonPrimaryKeyUuidPropertyListener:
     tags: [{name: doctrine.event_subscriber}]

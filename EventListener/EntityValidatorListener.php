@@ -9,49 +9,43 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\UnitOfWork;
 use HalloVerden\EntityUtilsBundle\Interfaces\ValidatableEntityInterface;
 use HalloVerden\HttpExceptions\Utility\ValidationException;
-use JMS\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/**
+ * Class EntityValidatorListener
+ *
+ * @package HalloVerden\EntityUtilsBundle\EventListener
+ */
 class EntityValidatorListener implements EventSubscriber {
 
   /**
    * @var ValidatorInterface
    */
-  private $validator;
+  private ValidatorInterface $validator;
 
   /**
-   * @var SerializerInterface
+   * @var string[]
    */
-  private $serializer;
-
-  /**
-   * @var string
-   */
-  private $validationGroups = ['EntityValidation'];
+  private array $validationGroups = ['EntityValidation'];
 
   /**
    * EntityValidatorSubscriber constructor.
    *
    * @param ValidatorInterface $validator
-   * @param SerializerInterface $serializer
-   * @param string[] $validationGroups
+   * @param string[]           $validationGroups
    */
-  public function __construct(ValidatorInterface $validator, SerializerInterface $serializer, array $validationGroups = null) {
+  public function __construct(ValidatorInterface $validator, ?array $validationGroups = null) {
     $this->validator = $validator;
-    $this->serializer = $serializer;
 
     if ($validationGroups) {
       $this->validationGroups = $validationGroups;
     }
   }
 
-
   /**
-   * Returns an array of events this subscriber wants to listen to.
-   *
-   * @return string[]
+   * @inheritDoc
    */
-  public function getSubscribedEvents() {
+  public function getSubscribedEvents(): array {
     return [
       Events::onFlush
     ];
@@ -60,7 +54,7 @@ class EntityValidatorListener implements EventSubscriber {
   /**
    * @param OnFlushEventArgs $eventArgs
    */
-  public function onFlush(OnFlushEventArgs $eventArgs) {
+  public function onFlush(OnFlushEventArgs $eventArgs): void {
     $uow = $eventArgs->getEntityManager()->getUnitOfWork();
 
     foreach ($uow->getScheduledEntityInsertions() as $entity) {
@@ -78,7 +72,7 @@ class EntityValidatorListener implements EventSubscriber {
 
   /**
    * @param ValidatableEntityInterface $entity
-   * @param UnitOfWork         $uow
+   * @param UnitOfWork                 $uow
    */
   private function validateEntity(ValidatableEntityInterface $entity, UnitOfWork $uow): void {
     $violations = $this->validator->validate($entity, null, $this->validationGroups);
