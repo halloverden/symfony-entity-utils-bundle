@@ -10,27 +10,17 @@ use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\JsonSerializationVisitor;
 
+/**
+ * Class UnixTimeHandler
+ *
+ * @package HalloVerden\EntityUtilsBundle\JMSHandlers
+ */
 class UnixTimeHandler implements SubscribingHandlerInterface {
 
   /**
-   * Return format:
-   *
-   *      array(
-   *          array(
-   *              'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
-   *              'format' => 'json',
-   *              'type' => 'DateTime',
-   *              'method' => 'serializeDateTimeToJson',
-   *          ),
-   *      )
-   *
-   * The direction and method keys can be omitted.
-   *
-   * @return array
-   *
-   * @phpcsSuppress SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint
+   * @inheritDoc
    */
-  public static function getSubscribingMethods() {
+  public static function getSubscribingMethods(): array {
     return [
       [
         'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
@@ -55,7 +45,7 @@ class UnixTimeHandler implements SubscribingHandlerInterface {
    *
    * @return int
    */
-  public function serializeDatetimeToJson(JsonSerializationVisitor $visitor, \DateTime $date, array $type, Context $context) {
+  public function serializeDatetimeToJson(JsonSerializationVisitor $visitor, \DateTime $date, array $type, Context $context): int {
     return $date->getTimestamp();
   }
 
@@ -68,7 +58,8 @@ class UnixTimeHandler implements SubscribingHandlerInterface {
    * @return \DateTime
    * @throws \Exception
    */
-  public function deserializeUnixTimeToDateTime(JsonDeserializationVisitor $visitor, $dateAsInt, array $type, Context $context) {
+  public function deserializeUnixTimeToDateTime(JsonDeserializationVisitor $visitor, $dateAsInt, array $type, Context $context): \DateTimeInterface {
     return new \DateTime('@' . $dateAsInt);
   }
+
 }
