@@ -4,7 +4,7 @@
 namespace HalloVerden\EntityUtilsBundle\Interfaces;
 
 /**
- * Interface IValidatableEntity
+ * Interface ValidatableEntityInterface
  *
  * @package App\Interfaces
  *
