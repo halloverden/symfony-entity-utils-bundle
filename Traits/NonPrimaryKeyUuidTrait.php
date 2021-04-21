@@ -10,10 +10,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * Trait TNonPrimaryKeyUuid
- * @package App\Traits
+ * Trait NonPrimaryKeyUuidTrait
+ *
+ * @package HalloVerden\EntityUtilsBundle\Traits
  */
-trait TNonPrimaryKeyUuid {
+trait NonPrimaryKeyUuidTrait {
+
   /**
    * @var Uuid
    *
@@ -23,11 +25,11 @@ trait TNonPrimaryKeyUuid {
    * @Assert\Type(type="Symfony\Component\Uid\Uuid")
    *
    * @Serializer\SerializedName("uuid")
-   * @Serializer\Type(name="string")
-   * @Serializer\Expose
+   * @Serializer\Type(name="Uuid")
+   * @Serializer\Expose()
    * @Serializer\Groups({"Detail", "List"})
    */
-  private $uuid;
+  private ?Uuid $uuid = null;
 
   /**
    * @return Uuid
@@ -45,12 +47,4 @@ trait TNonPrimaryKeyUuid {
     $this->uuid = Uuid::v4();
   }
 
-  /**
-   * @Serializer\PostDeserialize()
-   */
-  public function ensureUuidIsAnObject() {
-    if (is_string($this->uuid)) {
-      $this->uuid = Uuid::fromString($this->uuid);
-    }
-  }
 }
