@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
+        "php":">=7.4",
         "doctrine/orm": "^2.7",
         "halloverden/symfony-http-exceptions": "^1.0.1",
         "jms/serializer": "^3.4",
