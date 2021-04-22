@@ -9,13 +9,14 @@ use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\JsonSerializationVisitor;
+use Symfony\Component\Uid\Uuid;
 
 /**
- * Class UnixTimeHandler
+ * Class UuidHandler
  *
  * @package HalloVerden\EntityUtilsBundle\JMSHandlers
  */
-class UnixTimeHandler implements SubscribingHandlerInterface {
+class UuidHandler implements SubscribingHandlerInterface {
 
   /**
    * @inheritDoc
@@ -25,41 +26,40 @@ class UnixTimeHandler implements SubscribingHandlerInterface {
       [
         'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
         'format' => 'json',
-        'type' => 'UnixTime',
-        'method' => 'serializeDatetimeToJson'
+        'type' => 'Uuid',
+        'method' => 'serializeUuid'
       ],
       [
         'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
         'format' => 'json',
-        'type' => 'UnixTime',
-        'method' => 'deserializeUnixTimeToDateTime'
+        'type' => 'Uuid',
+        'method' => 'deserializeUuid'
       ]
     ];
   }
 
   /**
    * @param JsonSerializationVisitor $visitor
-   * @param \DateTime                $date
+   * @param Uuid                     $uuid
    * @param array                    $type
    * @param Context                  $context
    *
-   * @return int
+   * @return string
    */
-  public function serializeDatetimeToJson(JsonSerializationVisitor $visitor, \DateTime $date, array $type, Context $context): int {
-    return $date->getTimestamp();
+  public function serializeUuid(JsonSerializationVisitor $visitor, Uuid $uuid, array $type, Context $context): string {
+    return $uuid->jsonSerialize();
   }
 
   /**
    * @param JsonDeserializationVisitor $visitor
-   * @param                            $dateAsInt
+   * @param string                     $uuidAsString
    * @param array                      $type
    * @param Context                    $context
    *
-   * @return \DateTime
-   * @throws \Exception
+   * @return Uuid
    */
-  public function deserializeUnixTimeToDateTime(JsonDeserializationVisitor $visitor, $dateAsInt, array $type, Context $context): \DateTimeInterface {
-    return new \DateTime('@' . $dateAsInt);
+  public function deserializeUuid(JsonDeserializationVisitor $visitor, string $uuidAsString, array $type, Context $context): Uuid {
+    return Uuid::fromString($uuidAsString);
   }
 
 }

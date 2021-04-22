@@ -7,9 +7,15 @@ use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-trait TTimestampableEntity {
+/**
+ * Trait TimestampableEntityTrait
+ *
+ * @package HalloVerden\EntityUtilsBundle\Traits
+ */
+trait TimestampableEntityTrait {
+
   /**
-   * @var \DateTime
+   * @var \DateTimeInterface
    *
    * @ORM\Column(name="created_at", type="datetime", nullable=false)
    *
@@ -21,10 +27,10 @@ trait TTimestampableEntity {
    * @Serializer\Expose()
    * @Serializer\Groups({"Detail", "List"})
    */
-  protected $createdAt;
+  protected \DateTimeInterface $createdAt;
 
   /**
-   * @var \DateTime
+   * @var \DateTimeInterface
    *
    * @ORM\Column(name="updated_at", type="datetime", nullable=false)
    *
@@ -34,39 +40,40 @@ trait TTimestampableEntity {
    * @Serializer\SerializedName("updatedAt")
    * @Serializer\Type("UnixTime")
    */
-  protected $updatedAt;
+  protected \DateTimeInterface $updatedAt;
 
   /**
-   * @return \DateTime
+   * @return \DateTimeInterface
    */
-  public function getCreatedAt(): \DateTime {
+  public function getCreatedAt(): \DateTimeInterface {
     return $this->createdAt;
   }
 
   /**
-   * @param  \DateTime $createdAt
+   * @param  \DateTimeInterface $createdAt
    * @return $this
    */
-  public function setCreatedAt(\DateTime $createdAt) {
+  public function setCreatedAt(\DateTimeInterface $createdAt): self {
     $this->createdAt = $createdAt;
 
     return $this;
   }
 
   /**
-   * @return \DateTime
+   * @return \DateTimeInterface
    */
-  public function getUpdatedAt(): ?\DateTime {
+  public function getUpdatedAt(): ?\DateTimeInterface {
     return $this->updatedAt;
   }
 
   /**
-   * @param  \DateTime $updatedAt
+   * @param  \DateTimeInterface $updatedAt
    * @return $this
    */
-  public function setUpdatedAt(\DateTime $updatedAt) {
+  public function setUpdatedAt(\DateTimeInterface $updatedAt): self {
     $this->updatedAt = $updatedAt;
 
     return $this;
   }
+
 }

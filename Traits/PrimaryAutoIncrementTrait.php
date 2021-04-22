@@ -7,18 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * Trait TPrimaryAutoIncrement
- * @package App\Traits
+ * Trait PrimaryAutoIncrementTrait
+ *
+ * @package HalloVerden\EntityUtilsBundle\Traits
  */
-trait TPrimaryAutoIncrement {
+trait PrimaryAutoIncrementTrait {
+
   /**
    * @var integer
    *
    * @ORM\Column(name="id", type="integer")
-   * @ORM\Id
+   * @ORM\Id()
    * @ORM\GeneratedValue(strategy="AUTO")
    */
-  protected $id;
+  protected int $id;
 
   /**
    * @return int
@@ -26,4 +28,5 @@ trait TPrimaryAutoIncrement {
   public function getId(): int {
     return $this->id;
   }
+
 }

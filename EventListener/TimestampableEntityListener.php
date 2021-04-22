@@ -8,13 +8,17 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use HalloVerden\EntityUtilsBundle\Interfaces\TimestampableEntityInterface;
 
+/**
+ * Class TimestampableEntityListener
+ *
+ * @package HalloVerden\EntityUtilsBundle\EventListener
+ */
 class TimestampableEntityListener implements EventSubscriber {
+
   /**
-   * Returns an array of events this subscriber wants to listen to.
-   *
-   * @return array
+   * @inheritDoc
    */
-  public function getSubscribedEvents() {
+  public function getSubscribedEvents(): array {
     return [
       Events::prePersist,
       Events::preUpdate
@@ -49,4 +53,5 @@ class TimestampableEntityListener implements EventSubscriber {
 
     $object->setUpdatedAt(new \DateTime());
   }
+
 }
