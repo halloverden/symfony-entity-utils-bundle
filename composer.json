@@ -16,7 +16,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php":"^7.4",
+        "php":">=7.4",
         "symfony/http-kernel": "^5.2",
         "symfony/dependency-injection": "^5.2",
         "ramsey/uuid": "^3.9",
