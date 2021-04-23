@@ -36,10 +36,10 @@ trait DateTimestampableEntityTrait {
   protected \DateTimeInterface $updatedAt;
 
   /**
-   * @param  \DateTime $createdAt
+   * @param  \DateTimeInterface $createdAt
    * @return $this
    */
-  public function setCreatedAt( \DateTime $createdAt ): self {
+  public function setCreatedAt( \DateTimeInterface $createdAt ): self {
     $this->createdAt = $createdAt;
 
     return $this;
