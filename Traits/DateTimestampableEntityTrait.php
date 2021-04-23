@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation as Serializer;
 trait DateTimestampableEntityTrait {
 
   /**
-   * @var \DateTime
+   * @var \DateTimeInterface
    *
    * @ORM\Column(name="created_at", type="datetime", nullable=true)
    *
@@ -26,7 +26,7 @@ trait DateTimestampableEntityTrait {
   protected \DateTimeInterface $createdAt;
 
   /**
-   * @var \DateTime
+   * @var \DateTimeInterface
    *
    * @ORM\Column(name="updated_at", type="datetime", nullable=true)
    *
@@ -63,7 +63,7 @@ trait DateTimestampableEntityTrait {
   }
 
   /**
-   * @return \DateTime
+   * @return \DateTimeInterface
    */
   public function getUpdatedAt(): \DateTimeInterface {
     return $this->updatedAt;
