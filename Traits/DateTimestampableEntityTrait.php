@@ -16,7 +16,7 @@ trait DateTimestampableEntityTrait {
   /**
    * @var \DateTimeInterface
    *
-   * @ORM\Column(name="created_at", type="datetime", nullable=true)
+   * @ORM\Column(name="created_at", type="datetime", nullable=false)
    *
    * @Serializer\SerializedName("createdAt")
    * @Serializer\Type(name="DateTime")
@@ -28,7 +28,7 @@ trait DateTimestampableEntityTrait {
   /**
    * @var \DateTimeInterface
    *
-   * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+   * @ORM\Column(name="updated_at", type="datetime", nullable=false)
    *
    * @Serializer\SerializedName("updatedAt")
    * @Serializer\Type("DateTime")
