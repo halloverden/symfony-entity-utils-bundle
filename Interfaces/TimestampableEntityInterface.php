@@ -11,7 +11,7 @@ namespace HalloVerden\EntityUtilsBundle\Interfaces;
 interface TimestampableEntityInterface {
 
   /**
-   * @param \DateTime $createdAt
+   * @param \DateTimeInterface $createdAt
    *
    * @return static
    */
