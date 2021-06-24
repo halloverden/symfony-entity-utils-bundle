@@ -7,7 +7,7 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
 use HalloVerden\EntityUtilsBundle\Interfaces\ValidatableEntityInterface;
-use HalloVerden\HttpExceptions\Utility\ValidationException;
+use HalloVerden\HttpExceptions\Utility\EntityValidationException;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -86,7 +86,7 @@ class EntityValidatorListener implements EventSubscriber {
     }
 
     if (count($violations) > 0) {
-      throw new ValidationException($violations);
+      throw new EntityValidationException($violations);
     }
   }
 
