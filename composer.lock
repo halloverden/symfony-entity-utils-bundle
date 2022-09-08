@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "900d648a43a44be17283f950b0c3b94e",
+    "content-hash": "c942e58e5db42a2c1e224d2429195819",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1017,16 +1017,16 @@
         },
         {
             "name": "halloverden/symfony-http-exceptions",
-            "version": "dev-feature/allow-symfony-6",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/halloverden/symfony-http-exceptions.git",
-                "reference": "8b54107f62fcffb17cee9cfb11674024b5097725"
+                "reference": "b5e66f845245f0b6e7598769cc1c87d9d3b75f0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/halloverden/symfony-http-exceptions/zipball/8b54107f62fcffb17cee9cfb11674024b5097725",
-                "reference": "8b54107f62fcffb17cee9cfb11674024b5097725",
+                "url": "https://api.github.com/repos/halloverden/symfony-http-exceptions/zipball/b5e66f845245f0b6e7598769cc1c87d9d3b75f0d",
+                "reference": "b5e66f845245f0b6e7598769cc1c87d9d3b75f0d",
                 "shasum": ""
             },
             "require": {
@@ -1059,9 +1059,9 @@
             "description": "Symfony HTTP Expcetions",
             "support": {
                 "issues": "https://github.com/halloverden/symfony-http-exceptions/issues",
-                "source": "https://github.com/halloverden/symfony-http-exceptions/tree/feature/allow-symfony-6"
+                "source": "https://github.com/halloverden/symfony-http-exceptions/tree/2.0.0"
             },
-            "time": "2022-09-07T15:31:51+00:00"
+            "time": "2022-09-08T11:35:31+00:00"
         },
         {
             "name": "jms/metadata",
@@ -4124,18 +4124,9 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "package": "halloverden/symfony-http-exceptions",
-            "version": "dev-feature/allow-symfony-6",
-            "alias": "1.2.0",
-            "alias_normalized": "1.2.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "halloverden/symfony-http-exceptions": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
