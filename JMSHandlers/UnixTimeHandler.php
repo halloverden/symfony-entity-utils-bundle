@@ -16,6 +16,7 @@ use JMS\Serializer\JsonSerializationVisitor;
  * @package HalloVerden\EntityUtilsBundle\JMSHandlers
  */
 class UnixTimeHandler implements SubscribingHandlerInterface {
+  public const TYPE = 'UnixTime';
 
   /**
    * @inheritDoc
@@ -25,13 +26,13 @@ class UnixTimeHandler implements SubscribingHandlerInterface {
       [
         'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
         'format' => 'json',
-        'type' => 'UnixTime',
+        'type' => self::TYPE,
         'method' => 'serializeDatetimeToJson'
       ],
       [
         'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
         'format' => 'json',
-        'type' => 'UnixTime',
+        'type' => self::TYPE,
         'method' => 'deserializeUnixTimeToDateTime'
       ]
     ];
