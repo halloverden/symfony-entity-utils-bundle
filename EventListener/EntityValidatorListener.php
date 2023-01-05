@@ -55,7 +55,7 @@ class EntityValidatorListener implements EventSubscriber {
    * @param OnFlushEventArgs $eventArgs
    */
   public function onFlush(OnFlushEventArgs $eventArgs): void {
-    $uow = $eventArgs->getEntityManager()->getUnitOfWork();
+    $uow = $eventArgs->getObjectManager()->getUnitOfWork();
 
     foreach ($uow->getScheduledEntityInsertions() as $entity) {
       if ($entity instanceof ValidatableEntityInterface) {
