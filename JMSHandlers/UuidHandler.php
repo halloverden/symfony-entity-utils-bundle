@@ -7,6 +7,7 @@ namespace HalloVerden\EntityUtilsBundle\JMSHandlers;
 use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\Handler\SymfonyUidHandler;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\JsonSerializationVisitor;
 use Symfony\Component\Uid\Uuid;
@@ -47,6 +48,7 @@ class UuidHandler implements SubscribingHandlerInterface {
    * @return string
    */
   public function serializeUuid(JsonSerializationVisitor $visitor, Uuid $uuid, array $type, Context $context): string {
+    $this->triggerDeprecation();
     return $uuid->jsonSerialize();
   }
 
@@ -59,7 +61,15 @@ class UuidHandler implements SubscribingHandlerInterface {
    * @return Uuid
    */
   public function deserializeUuid(JsonDeserializationVisitor $visitor, string $uuidAsString, array $type, Context $context): Uuid {
+    $this->triggerDeprecation();
     return Uuid::fromString($uuidAsString);
+  }
+
+  /**
+   * @return void
+   */
+  private function triggerDeprecation(): void {
+    trigger_deprecation('halloverden/symfony-entity-utils-bundle', '4.0', '"%s" is deprecated, use "%s" instead', self::class, SymfonyUidHandler::class);
   }
 
 }
