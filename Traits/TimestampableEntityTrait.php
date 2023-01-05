@@ -3,43 +3,21 @@
 
 namespace HalloVerden\EntityUtilsBundle\Traits;
 
-use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use HalloVerden\EntityUtilsBundle\JMSHandlers\UnixTimeHandler;
+use JMS\Serializer\Annotation as Serializer;
 
-/**
- * Trait TimestampableEntityTrait
- *
- * @package HalloVerden\EntityUtilsBundle\Traits
- */
+
 trait TimestampableEntityTrait {
 
-  /**
-   * @var \DateTimeInterface
-   *
-   * @ORM\Column(name="created_at", type="datetime", nullable=false)
-   *
-   * @Assert\NotBlank()
-   * @Assert\Type(type="DateTime")
-   *
-   * @Serializer\SerializedName("createdAt")
-   * @Serializer\Type(name="UnixTime")
-   * @Serializer\Expose()
-   * @Serializer\Groups({"Detail", "List"})
-   */
+  #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
+  #[Serializer\SerializedName(name: 'createdAt')]
+  #[Serializer\Type(name: UnixTimeHandler::TYPE)]
+  #[Serializer\Expose]
+  #[Serializer\Groups(groups: ['Detail', 'List'])]
   protected \DateTimeInterface $createdAt;
 
-  /**
-   * @var \DateTimeInterface
-   *
-   * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-   *
-   * @Assert\NotBlank()
-   * @Assert\Type(type="DateTime")
-   *
-   * @Serializer\SerializedName("updatedAt")
-   * @Serializer\Type("UnixTime")
-   */
+  #[ORM\Column(name: 'updated_at', type: 'datetime', nullable: false)]
   protected \DateTimeInterface $updatedAt;
 
   /**

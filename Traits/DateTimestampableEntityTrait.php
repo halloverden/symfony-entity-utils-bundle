@@ -6,40 +6,24 @@ namespace HalloVerden\EntityUtilsBundle\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
-/**
- * Trait TDateTimestampableEntity
- *
- * @package HalloVerden\EntityUtilsBundle\Traits
- */
 trait DateTimestampableEntityTrait {
 
-  /**
-   * @var \DateTimeInterface
-   *
-   * @ORM\Column(name="created_at", type="datetime", nullable=false)
-   *
-   * @Serializer\SerializedName("createdAt")
-   * @Serializer\Type(name="DateTime")
-   * @Serializer\Expose
-   * @Serializer\Groups({"Detail", "List"})
-   */
+  #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
+  #[Serializer\SerializedName(name: 'createdAt')]
+  #[Serializer\Type(name: \DateTimeInterface::class)]
+  #[Serializer\Expose]
+  #[Serializer\Groups(groups: ["Detail", "List"])]
   protected \DateTimeInterface $createdAt;
 
-  /**
-   * @var \DateTimeInterface
-   *
-   * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-   *
-   * @Serializer\SerializedName("updatedAt")
-   * @Serializer\Type("DateTime")
-   */
+  #[ORM\Column(name: 'updated_at', type: 'datetime', nullable: false)]
   protected \DateTimeInterface $updatedAt;
 
   /**
-   * @param  \DateTimeInterface $createdAt
+   * @param \DateTimeInterface $createdAt
+   *
    * @return $this
    */
-  public function setCreatedAt( \DateTimeInterface $createdAt ): self {
+  public function setCreatedAt(\DateTimeInterface $createdAt): self {
     $this->createdAt = $createdAt;
 
     return $this;
@@ -53,10 +37,11 @@ trait DateTimestampableEntityTrait {
   }
 
   /**
-   * @param  \DateTimeInterface $updatedAt
+   * @param \DateTimeInterface $updatedAt
+   *
    * @return $this
    */
-  public function setUpdatedAt( \DateTimeInterface $updatedAt ): self {
+  public function setUpdatedAt(\DateTimeInterface $updatedAt): self {
     $this->updatedAt = $updatedAt;
 
     return $this;

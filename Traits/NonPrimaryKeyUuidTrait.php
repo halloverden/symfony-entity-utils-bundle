@@ -6,33 +6,22 @@ namespace HalloVerden\EntityUtilsBundle\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-/**
- * Trait NonPrimaryKeyUuidTrait
- *
- * @package HalloVerden\EntityUtilsBundle\Traits
- */
 trait NonPrimaryKeyUuidTrait {
 
-  /**
-   * @var Uuid
-   *
-   * @ORM\Column(name="uuid", type="uuid", unique=true)
-   *
-   * @Assert\NotBlank()
-   * @Assert\Type(type="Symfony\Component\Uid\Uuid")
-   *
-   * @Serializer\SerializedName("uuid")
-   * @Serializer\Type(name="Uuid")
-   * @Serializer\Expose()
-   * @Serializer\Groups({"Detail", "List"})
-   */
+  #[ORM\Column(name: 'uuid', type: 'uuid', unique: true)]
+  #[Assert\NotBlank]
+  #[Serializer\SerializedName(name: 'uuid')]
+  #[Serializer\Type(name: UuidV4::class)]
+  #[Serializer\Expose]
+  #[Serializer\Groups(groups: ['Detail', 'List'])]
   private ?Uuid $uuid = null;
 
   /**
-   * @return Uuid
+   * @return Uuid|null
    */
   public function getUuid(): ?Uuid {
     return $this->uuid;
