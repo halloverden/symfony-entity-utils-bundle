@@ -14,7 +14,7 @@ use Symfony\Component\Uid\Uuid;
 interface NonPrimaryKeyUuidPropertyInterface {
 
   /**
-   * Generates Uuuid
+   * Generates Uuid
    */
   function generateUuid(): void;
 
