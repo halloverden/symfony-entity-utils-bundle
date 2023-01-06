@@ -18,13 +18,13 @@ enum EnumHandler implements SubscribingHandlerInterface {
       [
         'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
         'format' => 'json',
-        'type' => 'Enum',
+        'type' => \BackedEnum::class,
         'method' => 'serializeEnumToJson'
       ],
       [
         'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
         'format' => 'json',
-        'type' => 'Enum',
+        'type' => \BackedEnum::class,
         'method' => 'deserializeEnumFromJson'
       ]
     ];
