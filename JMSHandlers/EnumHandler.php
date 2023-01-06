@@ -8,7 +8,7 @@ use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\JsonSerializationVisitor;
 
-enum EnumHandler implements SubscribingHandlerInterface {
+class EnumHandler implements SubscribingHandlerInterface {
 
   /**
    * @inheritDoc
