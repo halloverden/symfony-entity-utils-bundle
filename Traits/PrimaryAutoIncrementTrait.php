@@ -6,20 +6,11 @@ namespace HalloVerden\EntityUtilsBundle\Traits;
 use Doctrine\ORM\Mapping as ORM;
 
 
-/**
- * Trait PrimaryAutoIncrementTrait
- *
- * @package HalloVerden\EntityUtilsBundle\Traits
- */
 trait PrimaryAutoIncrementTrait {
 
-  /**
-   * @var integer
-   *
-   * @ORM\Column(name="id", type="integer")
-   * @ORM\Id()
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
+  #[ORM\Column(name: 'id', type: 'integer')]
+  #[ORM\Id]
+  #[ORM\GeneratedValue(strategy: 'AUTO')]
   protected int $id;
 
   /**
