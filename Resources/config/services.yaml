@@ -15,3 +15,6 @@ services:
 
   HalloVerden\EntityUtilsBundle\JMSHandlers\UuidHandler:
     tags: [ { name: jms_serializer.subscribing_handler } ]
+
+  HalloVerden\EntityUtilsBundle\JMSHandlers\EnumHandler:
+    tags: [ { name: jms_serializer.subscribing_handler } ]
