@@ -20,7 +20,7 @@
         "doctrine/orm": "^2.7",
         "halloverden/symfony-http-exceptions": "^1.0|^2.0",
         "jms/serializer": "^3.4",
-        "jms/serializer-bundle": "^3.5",
+        "jms/serializer-bundle": "^3.10|^4.2|^5.0",
         "symfony/config": "^5.4|^6.1",
         "symfony/dependency-injection": "^5.4|^6.1",
         "symfony/doctrine-bridge": "^5.4|^6.1",
