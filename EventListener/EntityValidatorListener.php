@@ -8,7 +8,9 @@ use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
 use HalloVerden\EntityUtilsBundle\Interfaces\ValidatableEntityInterface;
 use HalloVerden\HttpExceptions\Utility\EntityValidationException;
+use Symfony\Component\Validator\Constraints\GroupSequence;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -75,19 +77,45 @@ class EntityValidatorListener implements EventSubscriber {
    * @param array|null                 $changeSet
    */
   private function validateEntity(ValidatableEntityInterface $entity, ?array $changeSet = null): void {
-    if ($changeSet === null) {
-      $violations = $this->validator->validate($entity, null, $this->validationGroups);
-    } else {
-      $violations = new ConstraintViolationList();
-
-      foreach (array_keys($changeSet) as $property) {
-        $violations->addAll($this->validator->validateProperty($entity, $property, $this->validationGroups));
-      }
-    }
+    $violations = $this->getViolations($entity, $changeSet);
 
     if (count($violations) > 0) {
       throw new EntityValidationException($violations);
     }
+  }
+
+  /**
+   * @param ValidatableEntityInterface $entity
+   * @param array|null                 $changeSet
+   *
+   * @return ConstraintViolationListInterface
+   */
+  private function getViolations(ValidatableEntityInterface $entity, ?array $changeSet = null): ConstraintViolationListInterface {
+    $groups = $this->getValidationGroups($entity);
+
+    if (null === $changeSet) {
+      return $this->validator->validate($entity, null, $groups);
+    }
+
+    $violations = new ConstraintViolationList();
+    foreach (array_keys($changeSet) as $property) {
+      $violations->addAll($this->validator->validateProperty($entity, $property, $this->validationGroups));
+    }
+
+    return $violations;
+  }
+
+  /**
+   * @param ValidatableEntityInterface $entity
+   *
+   * @return string|array|GroupSequence|null
+   */
+  private function getValidationGroups(ValidatableEntityInterface $entity): string|array|GroupSequence|null {
+    if (\method_exists($entity, 'getValidationGroups')) {
+      return $entity->getValidationGroups() ?? $this->validationGroups;
+    }
+
+    return $this->validationGroups;
   }
 
 }
