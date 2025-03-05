@@ -3,26 +3,13 @@
 
 namespace HalloVerden\EntityUtilsBundle\EventListener;
 
-use Doctrine\Common\EventSubscriber;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use HalloVerden\EntityUtilsBundle\Interfaces\NonPrimaryKeyUuidPropertyInterface;
 
-/**
- * Class NonPrimaryKeyUuidPropertyListener
- *
- * @package HalloVerden\EntityUtilsBundle\EventListener
- */
-class NonPrimaryKeyUuidPropertyListener implements EventSubscriber {
-
-  /**
-   * @inheritDoc
-   */
-  public function getSubscribedEvents(): array {
-    return [
-      Events::prePersist
-    ];
-  }
+#[AsDoctrineListener(event: Events::prePersist)]
+class NonPrimaryKeyUuidPropertyListener {
 
   /**
    * @param LifecycleEventArgs $args
