@@ -3,7 +3,7 @@
 
 namespace HalloVerden\EntityUtilsBundle\EventListener;
 
-use Doctrine\Common\EventSubscriber;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Events;
 use HalloVerden\EntityUtilsBundle\Interfaces\ValidatableEntityInterface;
@@ -13,12 +13,8 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-/**
- * Class EntityValidatorListener
- *
- * @package HalloVerden\EntityUtilsBundle\EventListener
- */
-class EntityValidatorListener implements EventSubscriber {
+#[AsDoctrineListener(event: Events::onFlush)]
+class EntityValidatorListener {
 
   /**
    * @var ValidatorInterface
@@ -42,15 +38,6 @@ class EntityValidatorListener implements EventSubscriber {
     if ($validationGroups) {
       $this->validationGroups = $validationGroups;
     }
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public function getSubscribedEvents(): array {
-    return [
-      Events::onFlush
-    ];
   }
 
   /**
