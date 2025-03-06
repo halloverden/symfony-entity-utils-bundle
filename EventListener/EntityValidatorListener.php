@@ -3,9 +3,7 @@
 
 namespace HalloVerden\EntityUtilsBundle\EventListener;
 
-use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use Doctrine\ORM\Events;
 use HalloVerden\EntityUtilsBundle\Interfaces\ValidatableEntityInterface;
 use HalloVerden\HttpExceptions\Utility\EntityValidationException;
 use Symfony\Component\Validator\Constraints\GroupSequence;
@@ -13,7 +11,6 @@ use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-#[AsDoctrineListener(event: Events::onFlush)]
 class EntityValidatorListener {
 
   /**

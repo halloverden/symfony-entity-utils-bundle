@@ -3,13 +3,9 @@
 
 namespace HalloVerden\EntityUtilsBundle\EventListener;
 
-use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
-use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use HalloVerden\EntityUtilsBundle\Interfaces\TimestampableEntityInterface;
 
-#[AsDoctrineListener(event: Events::prePersist)]
-#[AsDoctrineListener(event: Events::preUpdate)]
 class TimestampableEntityListener {
 
   /**
