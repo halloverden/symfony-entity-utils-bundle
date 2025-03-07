@@ -3,27 +3,10 @@
 
 namespace HalloVerden\EntityUtilsBundle\EventListener;
 
-use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use HalloVerden\EntityUtilsBundle\Interfaces\TimestampableEntityInterface;
 
-/**
- * Class TimestampableEntityListener
- *
- * @package HalloVerden\EntityUtilsBundle\EventListener
- */
-class TimestampableEntityListener implements EventSubscriber {
-
-  /**
-   * @inheritDoc
-   */
-  public function getSubscribedEvents(): array {
-    return [
-      Events::prePersist,
-      Events::preUpdate
-    ];
-  }
+class TimestampableEntityListener {
 
   /**
    * @param LifecycleEventArgs $args

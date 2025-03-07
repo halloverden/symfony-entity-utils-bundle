@@ -1,14 +1,22 @@
 services:
   HalloVerden\EntityUtilsBundle\EventListener\EntityValidatorListener:
-    tags: [{name: doctrine.event_subscriber}]
+    tags:
+      -   name: 'doctrine.event_listener'
+          event: 'onFlush'
     arguments:
       $validator: '@Symfony\Component\Validator\Validator\ValidatorInterface'
 
   HalloVerden\EntityUtilsBundle\EventListener\NonPrimaryKeyUuidPropertyListener:
-    tags: [{name: doctrine.event_subscriber}]
+    tags:
+      -   name: 'doctrine.event_listener'
+          event: 'prePersist'
 
   HalloVerden\EntityUtilsBundle\EventListener\TimestampableEntityListener:
-    tags: [{name: doctrine.event_subscriber}]
+    tags:
+      -   name: 'doctrine.event_listener'
+          event: 'prePersist'
+      -   name: 'doctrine.event_listener'
+          event: 'preUpdate'
 
   HalloVerden\EntityUtilsBundle\JMSHandlers\UnixTimeHandler:
     tags: [{name: jms_serializer.subscribing_handler}]
